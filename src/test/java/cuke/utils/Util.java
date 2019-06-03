@@ -7,10 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 
 public class Util {
-    public <T> T retrieveResourceFromResponse(HttpResponse response, Class<T> clazz) throws IOException {
+
+    public <T> String retrieveResourceFromResponse(HttpResponse response) throws IOException {
 
           String jsonFromResponse = EntityUtils.toString(response.getEntity());
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        return mapper.readValue(jsonFromResponse, clazz);
+        return mapper.readValue(jsonFromResponse.replace("<p>", "").replace("</p>", ""), String.class);
+
     }
 }

@@ -2,7 +2,8 @@ Feature: poll the fishapi url with invalid params and get errors
 
 #  t6
   Scenario: send a POST request to fishAPI URL
-    When a user sends a POST request to fishAPI URL, the response is Not Found
+    When a user sends a POST request to fishAPI URL
+    Then the status code is 404
 
 # t5
   Scenario: send a GET request to fishAPI URL with too big number
